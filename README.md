@@ -1,5 +1,5 @@
 Sản phẩm: StudyFlow
-Tiêu đề: StudyFlow - Lên kế hoạch học tập, tiến bộ nhìn thấy được cho học sinh , sinh viên một cách hiệu quả.
+Tiêu đề: StudyFlow - Lên kế hoạch học tập, tiến bộ nhìn thấy được cho học sinh , sinh viên một cách hiệu quả
 Chọn màu:
 + Màu thương hiệu chính: Màu đen #0b1220
 + Màu nhấn: Màu xanh dương #2F5FF6
@@ -147,7 +147,7 @@ git commit -m "docs: bo sung bang design tokens mau sac vao README.md"
 git push origin main
 ---
 
-## 3. Checklist Buổi 1
+## 3. Checklist buổi-1
 
 ```
 - [x] `npm run dev` chạy được; sửa HTML là CSS cập nhật[cite: 4]
