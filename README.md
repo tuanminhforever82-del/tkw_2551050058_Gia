@@ -147,7 +147,7 @@ git commit -m "docs: bo sung bang design tokens mau sac vao README.md"
 git push origin main
 ---
 
-## 3. Checklist buổi-1
+## 3. Checklist buổi 1
 
 ```
 - [x] `npm run dev` chạy được; sửa HTML là CSS cập nhật[cite: 4]

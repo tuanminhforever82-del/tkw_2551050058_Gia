@@ -1,0 +1,28 @@
+@import "tailwindcss";
+@theme{
+    --color-brand-600: #0B1220;
+    --color-accent-500:#2F5FF6;
+     --color-brand-700: #060A14; 
+    --color-ink:#0B1220;
+    --color-muted:#5B6478;
+    --color-surface:#FFFFFF;
+    --color-line:#E4E7EE;
+    --border-line: 1px solid var(--color-line);
+    --font-display:"Space Grotesk", sans-serif;
+    --font-body:"Inter", sans-serif;
+    --radius-card: 16px;
+    --radius-pill: 9999px; 
+}
+@layer components {
+  .section {
+    @apply mx-auto w-full max-w-6xl px-5 py-20 lg:py-28;
+  }
+
+  .btn {
+    @apply inline-flex items-center justify-center gap-2 rounded-pill
+           px-5 py-2.5 text-sm font-semibold transition-colors;
+  }
+  .btn-primary {
+    @apply bg-brand-600 text-white hover:bg-brand-700;
+  }
+}
