@@ -1,5 +1,5 @@
 Sản phẩm: StudyFlow
-Tiêu đề: StudyFlow - Lên kế hoạch học tập, tiến bộ nhìn thấy được cho học sinh , sinh viên 
+Tiêu đề: StudyFlow - Lên kế hoạch học tập, tiến bộ nhìn thấy được cho học sinh , sinh viên một cách hiệu quả.
 Chọn màu:
 + Màu thương hiệu chính: Màu đen #0b1220
 + Màu nhấn: Màu xanh dương #2F5FF6
