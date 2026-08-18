@@ -1,0 +1,166 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Bảng giá - StudyFlow</title>
+  <link rel="stylesheet" href="dist/output.css">
+</head>
+<body class="bg-surface dark:bg-surface-dark text-ink dark:text-ink-invert transition-colors duration-300">
+
+  <a href="#main" class="sr-only focus:not-sr-only">Bỏ qua đến nội dung chính</a>
+
+  <!-- BẮT ĐẦU HEADER (Giống hệt index.html) -->
+  <header id="main-header" class="sticky top-0 z-50 bg-white/95 dark:bg-surface-dark/95 backdrop-blur-sm transition-shadow duration-300 border-b border-transparent dark:border-line-invert">
+    <nav aria-label="Điều hướng chính" class="section py-5! flex items-center justify-between">
+      <a href="index.html" class="flex items-center gap-3 group">
+        <div class="flex items-center justify-center w-11 h-11 bg-accent-500 rounded-xl shadow-sm transition-opacity hover:opacity-90">
+          <svg xmlns="http://www.w3.org/2000/svg" class="w-6 h-6 text-white" fill="none" viewBox="0 0 24 24" stroke="currentColor" stroke-width="2">
+            <path stroke-linecap="round" stroke-linejoin="round" d="M13 10V3L4 14h7v7l9-11h-7z" />
+          </svg>
+        </div>
+        <span class="font-display text-2xl font-bold text-ink dark:text-ink-invert tracking-tight">StudyFlow</span>
+      </a>
+      <div class="flex items-center gap-3">
+        <button id="theme-toggle" type="button" class="p-2 rounded-lg bg-line dark:bg-line-invert text-ink dark:text-ink-invert transition-colors">
+          <span id="theme-icon">🌙</span>
+        </button>
+        <button type="button" class="btn btn-outline lg:hidden" aria-expanded="false" aria-controls="menu-chinh">
+          Mở menu
+        </button>
+      </div>
+      <ul id="menu-chinh" class="hidden w-full flex-col items-end gap-4 mt-4 lg:mt-0 lg:flex lg:w-auto lg:flex-row lg:items-center lg:gap-8">
+        <li><a href="index.html#tinh-nang-title" class="text-sm font-medium text-muted dark:text-muted-invert hover:text-ink dark:hover:text-ink-invert">Tính năng</a></li>
+        <li><a href="pricing.html" class="text-sm font-medium text-accent-500 font-bold">Bảng giá</a></li>
+        <li><a href="contact.html" class="text-sm font-medium text-muted dark:text-muted-invert hover:text-ink dark:hover:text-ink-invert">Liên hệ</a></li>
+        <li><a href="#" class="btn btn-outline">Đăng nhập</a></li>
+        <li><a href="#" class="btn btn-primary">Dùng thử miễn phí</a></li>
+      </ul>
+    </nav>
+  </header>
+  <!-- KẾT THÚC HEADER -->
+
+  <main id="main">
+    <!-- Tiêu đề trang & Các thẻ giá (Kế thừa thẻ card) -->
+    <section class="section text-center">
+      <span class="badge mb-6 inline-block">Nâng cấp việc học</span>
+      <h1 class="font-display text-4xl font-semibold text-ink dark:text-ink-invert mb-4">Đầu tư nhỏ, kết quả lớn</h1>
+      <p class="text-muted dark:text-muted-invert max-w-xl mx-auto mb-14">Chọn gói phù hợp với mục tiêu học tập của bạn. Có thể hủy bất kỳ lúc nào.</p>
+      
+      <ul class="grid gap-6 lg:grid-cols-3 text-left">
+        <li class="card p-8!">
+          <h3 class="font-display text-base font-semibold text-ink dark:text-ink-invert mb-1">Free</h3>
+          <p class="text-sm text-muted dark:text-muted-invert mb-6">0đ / tháng</p>
+          <ul class="flex flex-col gap-2 text-sm text-muted dark:text-muted-invert mb-8">
+            <li>✓ 1 lịch học đang hoạt động</li>
+            <li>✓ Flashcard không giới hạn</li>
+            <li>✓ Pomodoro cơ bản</li>
+          </ul>
+          <a href="#" class="btn btn-outline w-full">Đang dùng</a>
+        </li>
+        <li class="rounded-card border-2 border-brand-600 dark:border-accent-500 bg-surface dark:bg-surface-dark p-8 shadow-2xl dark:shadow-none relative">
+          <span class="absolute top-0 right-8 -translate-y-1/2 bg-accent-500 text-white text-[10px] font-bold px-2 py-1 rounded-pill uppercase">Phổ biến nhất</span>
+          <h3 class="font-display text-base font-semibold text-ink dark:text-ink-invert mb-1">Pro</h3>
+          <p class="text-sm text-muted dark:text-muted-invert mb-6">59.000đ / tháng</p>
+          <ul class="flex flex-col gap-2 text-sm text-muted dark:text-muted-invert mb-8">
+            <li>✓ Lịch học không giới hạn</li>
+            <li>✓ Spaced repetition nâng cao</li>
+            <li>✓ Thống kê tập trung chi tiết</li>
+          </ul>
+          <a href="#" class="btn btn-primary w-full">Dùng thử 14 ngày</a>
+        </li>
+        <li class="card p-8!">
+          <h3 class="font-display text-base font-semibold text-ink dark:text-ink-invert mb-1">Team</h3>
+          <p class="text-sm text-muted dark:text-muted-invert mb-6">39.000đ / người / tháng</p>
+          <ul class="flex flex-col gap-2 text-sm text-muted dark:text-muted-invert mb-8">
+            <li>✓ Mọi quyền lợi gói Pro</li>
+            <li>✓ Lịch học nhóm dùng chung</li>
+            <li>✓ Bảng xếp hạng thi đua</li>
+          </ul>
+          <a href="contact.html" class="btn btn-outline w-full">Liên hệ tư vấn</a>
+        </li>
+      </ul>
+    </section>
+
+    <!-- Bảng so sánh tính năng (Cuộn ngang trên Mobile) -->
+    <section class="section border-t border-line dark:border-line-invert">
+      <h2 class="font-display text-2xl font-semibold text-ink dark:text-ink-invert mb-8 text-center">So sánh tính năng chi tiết</h2>
+      
+      <div class="overflow-x-auto pb-4">
+        <table class="w-full min-w-[600px] text-left border-collapse">
+          <thead>
+            <tr class="border-b-2 border-line dark:border-line-invert text-ink dark:text-ink-invert">
+              <th class="py-4 font-semibold w-2/5">Tính năng</th>
+              <th class="py-4 font-semibold text-center w-1/5">Free</th>
+              <th class="py-4 font-semibold text-center w-1/5 text-accent-500">Pro</th>
+              <th class="py-4 font-semibold text-center w-1/5">Team</th>
+            </tr>
+          </thead>
+          <tbody class="text-sm text-muted dark:text-muted-invert">
+            <tr class="border-b border-line dark:border-line-invert">
+              <td class="py-4">Môn học tối đa</td>
+              <td class="py-4 text-center">1 môn</td>
+              <td class="py-4 text-center font-medium text-ink dark:text-ink-invert">Không giới hạn</td>
+              <td class="py-4 text-center font-medium text-ink dark:text-ink-invert">Không giới hạn</td>
+            </tr>
+            <tr class="border-b border-line dark:border-line-invert">
+              <td class="py-4">Tạo Flashcard</td>
+              <td class="py-4 text-center">Không giới hạn</td>
+              <td class="py-4 text-center">Không giới hạn</td>
+              <td class="py-4 text-center">Không giới hạn</td>
+            </tr>
+            <tr class="border-b border-line dark:border-line-invert">
+              <td class="py-4">Thuật toán nhắc nhở thông minh</td>
+              <td class="py-4 text-center">—</td>
+              <td class="py-4 text-center">✓</td>
+              <td class="py-4 text-center">✓</td>
+            </tr>
+            <tr class="border-b border-line dark:border-line-invert">
+              <td class="py-4">Học nhóm chung tài liệu</td>
+              <td class="py-4 text-center">—</td>
+              <td class="py-4 text-center">—</td>
+              <td class="py-4 text-center">Tối đa 10 người</td>
+            </tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <!-- FAQ Về thanh toán -->
+    <section class="section max-w-3xl border-t border-line dark:border-line-invert">
+      <h2 class="font-display text-2xl font-semibold text-ink dark:text-ink-invert mb-8">Câu hỏi về thanh toán</h2>
+      <ul class="flex flex-col gap-3">
+        <li class="rounded-card border border-line dark:border-line-invert bg-surface dark:bg-surface-dark">
+          <details class="p-5">
+            <summary class="cursor-pointer text-sm font-semibold text-ink dark:text-ink-invert">StudyFlow hỗ trợ phương thức thanh toán nào?</summary>
+            <p class="text-sm text-muted dark:text-muted-invert mt-3">Chúng tôi hỗ trợ thanh toán qua thẻ ngân hàng nội địa, thẻ tín dụng (Visa/Mastercard), và các ví điện tử phổ biến tại Việt Nam như Momo, ZaloPay.</p>
+          </details>
+        </li>
+        <li class="rounded-card border border-line dark:border-line-invert bg-surface dark:bg-surface-dark">
+          <details class="p-5">
+            <summary class="cursor-pointer text-sm font-semibold text-ink dark:text-ink-invert">Sinh viên có được giảm giá không?</summary>
+            <p class="text-sm text-muted dark:text-muted-invert mt-3">Có! Nếu bạn đăng ký bằng email đuôi .edu.vn của trường Đại học, bạn sẽ tự động được giảm 30% khi thanh toán gói Pro theo năm.</p>
+          </details>
+        </li>
+      </ul>
+    </section>
+  </main>
+
+  <!-- BẮT ĐẦU FOOTER (Giống hệt index.html) -->
+  <footer class="section py-14! border-t border-line dark:border-line-invert">
+    <div class="flex flex-col gap-3 mb-10">
+      <h2 class="font-display text-lg font-bold text-ink dark:text-ink-invert">StudyFlow</h2>
+      <p class="max-w-xs text-sm text-muted dark:text-muted-invert">Công cụ lên kế hoạch và theo dõi việc tự học, dành cho học sinh và sinh viên.</p>
+    </div>
+    <form class="flex flex-wrap items-end gap-3 mb-10">
+      <div class="flex flex-col gap-1">
+        <label for="email-nhan-tin" class="field-label">Nhận tin tức học tập mỗi tuần</label>
+        <input type="email" id="email-nhan-tin" required class="field-input">
+      </div>
+      <button type="submit" class="btn btn-primary">Đăng ký</button>
+    </form>
+    <p class="text-xs text-muted dark:text-muted-invert">Bản quyền StudyFlow, năm 2026.</p>
+  </footer>
+  <script src="j.js"></script>
+</body>
+</html>
