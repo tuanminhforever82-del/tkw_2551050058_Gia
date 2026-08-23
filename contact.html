@@ -5,9 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Liên hệ - StudyFlow</title>
   <link rel="stylesheet" href="dist/output.css">
+  <!-- SCRIPT CHỐNG NHÁY TRẮNG DARK MODE  -->
+  <script>
+    (function () {
+      const saved = localStorage.getItem("theme");
+      const dark = saved ? saved === "dark" 
+                         : window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.classList.toggle("dark", dark);
+    })();
+  </script>
 </head>
 <body class="bg-surface dark:bg-surface-dark text-ink dark:text-ink-invert transition-colors duration-300">
-
+<!-- THÊM DÒNG NÀY (Người canh gác IntersectionObserver) -->
+  <div id="nav-sentinel"></div>
   <a href="#main" class="sr-only focus:not-sr-only">Bỏ qua đến nội dung chính</a>
 
   <!-- BẮT ĐẦU HEADER -->
@@ -33,8 +43,8 @@
         <li><a href="index.html#tinh-nang-title" class="text-sm font-medium text-muted dark:text-muted-invert hover:text-ink dark:hover:text-ink-invert">Tính năng</a></li>
         <li><a href="pricing.html" class="text-sm font-medium text-muted dark:text-muted-invert hover:text-ink dark:hover:text-ink-invert">Bảng giá</a></li>
         <li><a href="contact.html" class="text-sm font-medium text-accent-500 font-bold">Liên hệ</a></li>
-        <li><a href="#" class="btn btn-outline">Đăng nhập</a></li>
-        <li><a href="#" class="btn btn-primary">Dùng thử miễn phí</a></li>
+        <li><a href="login.html" class="btn btn-outline">Đăng nhập</a></li>
+        <li><a href="signup.html" class="btn btn-primary">Dùng thử miễn phí</a></li>
       </ul>
     </nav>
   </header>
@@ -165,6 +175,15 @@
     </form>
     <p class="text-xs text-muted dark:text-muted-invert">Bản quyền StudyFlow, năm 2026.</p>
   </footer>
-  <script src="j.js"></script>
+
+  <!-- Thêm nút Lên đầu trang (Bài khởi động) -->
+  <button id="to-top-btn" class="hidden fixed bottom-8 right-8 z-50 w-12 h-12 items-center justify-center rounded-full bg-accent-500 text-white shadow-lg transition-transform hover:-translate-y-1" aria-label="Lên đầu trang">
+    ↑
+  </button>
+
+  <!-- Nạp script dạng module chuẩn ES6 -->
+  <script type="module" src="./js/main.js"></script>
+</body>
+</html>
 </body>
 </html>

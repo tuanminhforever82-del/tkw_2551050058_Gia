@@ -5,9 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>StudyFlow - Lên kế hoạch học tập, tiến bộ nhìn thấy được</title>
   <link rel="stylesheet" href="dist/output.css">
+  <!-- SCRIPT CHỐNG NHÁY TRẮNG DARK MODE  -->
+  <script>
+    (function () {
+      const saved = localStorage.getItem("theme");
+      const dark = saved ? saved === "dark" 
+                         : window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.classList.toggle("dark", dark);
+    })();
+  </script>
 </head>
 <body class="bg-surface dark:bg-surface-dark text-ink dark:text-ink-invert transition-colors duration-300">
-
+<!-- THÊM DÒNG NÀY (Người canh gác IntersectionObserver) -->
+  <div id="nav-sentinel"></div>
   <a href="#main" class="sr-only focus:not-sr-only">Bỏ qua đến nội dung chính</a>
 
   <!-- Khu vực điều hướng chính -->
@@ -43,8 +53,8 @@
         <!-- Dòng mới đã được sửa link -->
         <li><a href="pricing.html" class="text-sm font-medium text-muted dark:text-muted-invert hover:text-ink dark:hover:text-ink-invert">Bảng giá</a></li>
         <li><a href="contact.html" class="text-sm font-medium text-muted dark:text-muted-invert hover:text-ink dark:hover:text-ink-invert">Liên hệ</a></li>
-        <li><a href="#dang-nhap-title" class="btn btn-outline">Đăng nhập</a></li>
-        <li><a href="#dang-ky-title" class="btn btn-primary">Dùng thử miễn phí</a></li>
+        <li><a href="login.html" class="btn btn-outline">Đăng nhập</a></li>
+        <li><a href="signup.html" class="btn btn-primary">Dùng thử miễn phí</a></li>
       </ul>
 
     </nav>
@@ -60,21 +70,37 @@
           Dành cho học sinh · sinh viên tự học
         </span>
         <h1 id="hero-title" class="font-display text-4xl font-semibold leading-tight text-ink dark:text-ink-invert lg:text-5xl">
-          Biến giờ học rời rạc thành <span class="text-accent-500">tiến độ nhìn thấy được</span>
+          Biến giờ học rời rạc thành <span class="text-accent-500 typing.text">tiến độ nhìn thấy được</span>
         </h1>
         <p class="max-w-md text-base text-muted dark:text-muted-invert">
           StudyFlow gộp lịch học, flashcard và phiên tập trung vào một nơi duy nhất, để bạn biết chính xác hôm nay cần học gì và bao lâu nữa thì xong.
         </p>
         <div class="flex flex-wrap items-center gap-4">
-          <a href="#dang-ky-title" class="btn btn-primary">Bắt đầu học thử — miễn phí</a>
+          <a href="signup.html" class="btn btn-primary">Bắt đầu học thử — miễn phí</a>
           <a href="#tinh-nang-title" class="btn btn-outline">Xem cách hoạt động</a>
         </div>
       </div>
-      <div class="rounded-card bg-brand-600 p-6 text-white shadow-2xl lg:p-8">
-        <p class="font-mono text-xs text-white/60">PHIÊN HỌC · GIẢI TÍCH II</p>
-        <p class="font-mono text-4xl font-semibold">18:24</p>
-        <p class="text-xs text-white/60">Pomodoro 4/5 hôm nay</p>
-      </div>
+      <!-- Bảng điều khiển Pomodoro -->
+<div class="card max-w-sm mx-auto text-center !p-8 shadow-2xl relative overflow-hidden">
+  <!-- Trang trí sương sương -->
+  <div class="absolute -top-10 -right-10 w-32 h-32 bg-accent-500/10 rounded-full blur-2xl pointer-events-none"></div>
+
+  <span class="badge mb-4 inline-block">Đồng hồ Pomodoro</span>
+  <h2 id="pomodoro-mode" class="font-display text-2xl font-bold text-ink dark:text-ink-invert mb-6 transition-colors duration-300">
+    Phiên tập trung
+  </h2>
+  
+  <!-- Hiển thị thời gian -->
+  <div id="pomodoro-time" class="font-mono text-6xl font-bold text-accent-500 mb-8 transition-all">
+    25:00
+  </div>
+  
+  <!-- Các nút điều khiển -->
+  <div class="flex justify-center gap-4 relative z-10">
+   <button id="pomodoro-start" class="btn btn-primary min-w-[120px]">Bắt đầu</button>
+<button id="pomodoro-reset" class="btn btn-outline min-w-[120px]">Khôi phục</button>
+  </div>
+</div>
     </section>
 
     <!-- Tính năng nổi bật -->
@@ -133,61 +159,123 @@
 
     <!-- Câu hỏi thường gặp -->
     <section class="section max-w-3xl" aria-labelledby="faq-title">
-      <h2 id="faq-title" class="font-display text-3xl font-semibold text-ink dark:text-ink-invert mb-10">Câu hỏi thường gặp</h2>
-      <ul class="flex flex-col gap-3">
-        <li class="rounded-card border border-line dark:border-line-invert bg-surface dark:bg-surface-dark">
-          <details class="p-5">
-            <summary class="cursor-pointer text-sm font-semibold text-ink dark:text-ink-invert">StudyFlow có dùng được trên điện thoại không?</summary>
-            <p class="text-sm text-muted dark:text-muted-invert mt-3">Có. StudyFlow chạy trên trình duyệt và có ứng dụng riêng cho điện thoại, đồng bộ tiến độ hai chiều.</p>
-          </details>
-        </li>
-        <li class="rounded-card border border-line dark:border-line-invert bg-surface dark:bg-surface-dark">
-          <details class="p-5">
-            <summary class="cursor-pointer text-sm font-semibold text-ink dark:text-ink-invert">Tôi có thể huỷ gói Pro bất cứ lúc nào không?</summary>
-            <p class="text-sm text-muted dark:text-muted-invert mt-3">Có. Bạn huỷ trực tiếp trong phần cài đặt tài khoản, không cần liên hệ hỗ trợ.</p>
-          </details>
-        </li>
-        <li class="rounded-card border border-line dark:border-line-invert bg-surface dark:bg-surface-dark">
-          <details class="p-5">
-            <summary class="cursor-pointer text-sm font-semibold text-ink dark:text-ink-invert">Dữ liệu học tập của tôi có bị chia sẻ không?</summary>
-            <p class="text-sm text-muted dark:text-muted-invert mt-3">Không. Tiến độ và flashcard của bạn chỉ hiển thị cho chính bạn, trừ khi bạn chủ động chia sẻ trong nhóm học.</p>
-          </details>
-        </li>
-      </ul>
-    </section>
+  <h2 id="faq-title" class="font-display text-3xl font-semibold text-ink dark:text-ink-invert mb-10">Câu hỏi thường gặp</h2>
+  
+  <!-- Khối cha chứa toàn bộ Accordion -->
+  <div id="faq-accordion" class="flex flex-col gap-3">
+    
+    <!-- Câu hỏi 1 -->
+    <div class="rounded-card border border-line dark:border-line-invert bg-surface dark:bg-surface-dark overflow-hidden">
+      <button data-faq-trigger aria-expanded="false" class="w-full flex items-center justify-between p-5 text-left text-sm font-semibold text-ink dark:text-ink-invert bg-surface dark:bg-surface-dark hover:bg-line/50 transition-colors">
+        StudyFlow có dùng được trên điện thoại không?
+        <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+      </button>
+      <div class="faq-content hidden p-5 pt-0 text-sm text-muted dark:text-muted-invert border-t border-line dark:border-line-invert mt-2">
+        Có. StudyFlow chạy trên trình duyệt và có ứng dụng riêng cho điện thoại, đồng bộ tiến độ hai chiều.
+      </div>
+    </div>
 
-    <!-- Cảm nhận của sinh viên về StudyFlow -->
+    <!-- Câu hỏi 2 -->
+    <div class="rounded-card border border-line dark:border-line-invert bg-surface dark:bg-surface-dark overflow-hidden">
+      <button data-faq-trigger aria-expanded="false" class="w-full flex items-center justify-between p-5 text-left text-sm font-semibold text-ink dark:text-ink-invert bg-surface dark:bg-surface-dark hover:bg-line/50 transition-colors">
+        Tôi có thể huỷ gói Pro bất cứ lúc nào không?
+        <svg class="w-5 h-5 transform transition-transform duration-300" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 9l-7 7-7-7"></path></svg>
+      </button>
+      <div class="faq-content hidden p-5 pt-0 text-sm text-muted dark:text-muted-invert border-t border-line dark:border-line-invert mt-2">
+        Có. Bạn huỷ trực tiếp trong phần cài đặt tài khoản, không cần liên hệ hỗ trợ.
+      </div>
+    </div>
+
+  </div>
+</section>
+
+   <!-- Cảm nhận của sinh viên về StudyFlow (Slider) -->
     <section class="section" aria-labelledby="cam-nhan-title">
-      <h2 id="cam-nhan-title" class="font-display text-3xl font-semibold text-ink dark:text-ink-invert mb-12">Sinh viên nói gì về StudyFlow</h2>
-      <ul class="grid gap-6 lg:grid-cols-3">
-        <li class="card">
-          <blockquote>
-            <p class="text-sm text-ink dark:text-ink-invert leading-relaxed mb-5">Trước đây mình ôn thi kiểu dồn cục cuối kỳ. Giờ lịch chia sẵn theo tuần nên không còn cảnh thức trắng đêm trước ngày thi.</p>
-          </blockquote>
-          <p class="text-xs font-semibold text-muted dark:text-muted-invert">Minh Anh · Sinh viên năm 2, Kinh tế</p>
-        </li>
-        <li class="card">
-          <blockquote>
-            <p class="text-sm text-ink dark:text-ink-invert leading-relaxed mb-5">Flashcard nhắc đúng lúc sắp quên thật sự khác biệt. Từ vựng chuyên ngành mình nhớ lâu hơn hẳn so với ghi chép tay.</p>
-          </blockquote>
-          <p class="text-xs font-semibold text-muted dark:text-muted-invert">Quốc Bảo · Sinh viên năm 3, Ngôn ngữ Anh</p>
-        </li>
-        <li class="card">
-          <blockquote>
-            <p class="text-sm text-ink dark:text-ink-invert leading-relaxed mb-5">Nhìn chuỗi ngày học liên tục trên màn hình khiến mình không muốn bỏ ngày nào.</p>
-          </blockquote>
-          <p class="text-xs font-semibold text-muted dark:text-muted-invert">Thu Hà · Học sinh lớp 12</p>
-        </li>
-      </ul>
+      <h2 id="cam-nhan-title" class="font-display text-3xl font-semibold text-ink dark:text-ink-invert mb-12 text-center">Sinh viên nói gì về StudyFlow</h2>
+      
+      <!-- Container bọc toàn bộ slider -->
+      <div id="testimonial-slider" class="relative max-w-4xl mx-auto group">
+        
+        <!-- Khung nhìn (Viewport) giấu phần bị tràn -->
+        <div class="overflow-hidden rounded-xl">
+          <!-- Dải băng ngang chứa các slide (Track) -->
+          <ul class="slider-track flex transition-transform duration-500 ease-in-out w-full">
+            
+            <!-- Slide 1 -->
+            <li class="slider-slide w-full shrink-0 px-4">
+              <div class="card h-full flex flex-col justify-between">
+                <blockquote>
+                  <p class="text-base text-ink dark:text-ink-invert leading-relaxed mb-6">"Trước đây mình ôn thi kiểu dồn cục cuối kỳ. Giờ lịch chia sẵn theo tuần nên không còn cảnh thức trắng đêm trước ngày thi."</p>
+                </blockquote>
+                <p class="text-sm font-semibold text-muted dark:text-muted-invert">— Minh Anh · Sinh viên năm 2, Kinh tế</p>
+              </div>
+            </li>
+            
+            <!-- Slide 2 -->
+            <li class="slider-slide w-full shrink-0 px-4">
+              <div class="card h-full flex flex-col justify-between">
+                <blockquote>
+                  <p class="text-base text-ink dark:text-ink-invert leading-relaxed mb-6">"Flashcard nhắc đúng lúc sắp quên thật sự khác biệt. Từ vựng chuyên ngành mình nhớ lâu hơn hẳn so với ghi chép tay."</p>
+                </blockquote>
+                <p class="text-sm font-semibold text-muted dark:text-muted-invert">— Quốc Bảo · Sinh viên năm 3, Ngôn ngữ Anh</p>
+              </div>
+            </li>
+            
+            <!-- Slide 3 -->
+            <li class="slider-slide w-full shrink-0 px-4">
+              <div class="card h-full flex flex-col justify-between">
+                <blockquote>
+                  <p class="text-base text-ink dark:text-ink-invert leading-relaxed mb-6">"Nhìn chuỗi ngày học liên tục trên màn hình khiến mình không muốn bỏ ngày nào. Nó giống như việc mình đang xây dựng một thói quen tốt vậy."</p>
+                </blockquote>
+                <p class="text-sm font-semibold text-muted dark:text-muted-invert">— Thu Hà · Học sinh lớp 12</p>
+              </div>
+            </li>
+
+          </ul>
+        </div>
+
+        <!-- Các nút điều hướng Trái / Phải -->
+        <button class="slider-prev absolute top-1/2 -left-4 md:-left-12 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-surface dark:bg-surface-dark border border-line dark:border-line-invert text-ink dark:text-ink-invert shadow-sm hover:bg-line dark:hover:bg-line-invert transition-colors" aria-label="Slide trước">
+          ←
+        </button>
+        <button class="slider-next absolute top-1/2 -right-4 md:-right-12 -translate-y-1/2 w-10 h-10 flex items-center justify-center rounded-full bg-surface dark:bg-surface-dark border border-line dark:border-line-invert text-ink dark:text-ink-invert shadow-sm hover:bg-line dark:hover:bg-line-invert transition-colors" aria-label="Slide tiếp theo">
+          →
+        </button>
+
+        <!-- Container chứa các chấm tròn (JS sẽ tự sinh ra) -->
+        <div class="slider-dots flex justify-center gap-2 mt-8"></div>
+        
+      </div>
     </section>
 
     <!-- Bảng giá các gói dịch vụ của StudyFlow -->
     <section class="section" aria-labelledby="bang-gia-title">
       <h2 id="bang-gia-title" class="font-display text-3xl font-semibold text-ink dark:text-ink-invert mb-12">Bắt đầu miễn phí, nâng cấp khi cần</h2>
+      
+      <!-- BẮT ĐẦU CÔNG TẮC GIÁ -->
+    <div class="flex items-center justify-center gap-4 mb-12">
+    <span class="text-sm font-medium text-ink dark:text-ink-invert">Hàng tháng</span>
+  
+    <!-- Nút switch dùng role="switch" và aria-checked. Dùng group để điều khiển cục tròn bên trong -->
+    <button id="pricing-switch" role="switch" aria-checked="false" class="group relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent bg-line transition-colors duration-200 ease-in-out aria-checked:bg-brand-600 dark:aria-checked:bg-accent-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2">
+    <span class="sr-only">Thanh toán theo năm</span>
+    <!-- Cục tròn trượt qua lại: Dùng group-aria-checked để bắt trạng thái từ button cha -->
+    <span aria-hidden="true" class="pointer-events-none inline-block h-4 w-4 transform rounded-full bg-surface dark:bg-surface-dark shadow ring-0 transition duration-200 ease-in-out translate-x-0 group-aria-checked:translate-x-5"></span>
+  </button>
+  
+  <span class="text-sm font-medium text-ink dark:text-ink-invert">Hàng năm <span class="text-xs text-accent-500 font-bold ml-1">(Giảm 20%)</span></span>
+</div>
+<!-- KẾT THÚC CÔNG TẮC GIÁ -->
+
       <ul class="grid gap-6 lg:grid-cols-3">
         <li class="card p-8!">
           <h3 class="font-display text-base font-semibold text-ink dark:text-ink-invert mb-1">Free</h3>
-          <p class="text-sm text-muted dark:text-muted-invert mb-6">0 đồng mỗi tháng, đủ dùng cho một môn học.</p>
+         <!-- Gói Free -->
+        <p class="mb-6">
+      <span class="font-display text-2xl font-bold text-ink dark:text-ink-invert">0 đ</span>
+      <span class="text-sm text-muted dark:text-muted-invert">/ tháng</span>
+     </p>
+<p class="text-sm text-muted dark:text-muted-invert mb-6">Đủ dùng cho một môn học.</p>
           <ul class="flex flex-col gap-2 text-sm text-muted dark:text-muted-invert mb-8">
             <li>1 lịch học đang hoạt động</li>
             <li>Flashcard không giới hạn</li>
@@ -197,7 +285,12 @@
         </li>
         <li class="rounded-card border-2 border-brand-600 dark:border-accent-500 bg-surface dark:bg-surface-dark p-8 shadow-2xl dark:shadow-none">
           <h3 class="font-display text-base font-semibold text-ink dark:text-ink-invert mb-1">Pro</h3>
-          <p class="text-sm text-muted dark:text-muted-invert mb-6">59.000 đồng mỗi tháng, cho cả học kỳ nhiều môn.</p>
+          <!-- Gói Pro -->
+        <p class="mb-6">
+  <span class="price-display font-display text-2xl font-bold text-ink dark:text-ink-invert" data-monthly="59000" data-yearly="566000">59.000 đ</span>
+  <span class="duration-display text-sm text-muted dark:text-muted-invert">/ tháng</span>
+</p>
+        <p class="text-sm text-muted dark:text-muted-invert mb-6">Cho cả học kỳ nhiều môn.</p>
           <ul class="flex flex-col gap-2 text-sm text-muted dark:text-muted-invert mb-8">
             <li>Lịch học không giới hạn môn</li>
             <li>Spaced repetition nâng cao</li>
@@ -207,7 +300,12 @@
         </li>
         <li class="card p-8!">
           <h3 class="font-display text-base font-semibold text-ink dark:text-ink-invert mb-1">Team</h3>
-          <p class="text-sm text-muted dark:text-muted-invert mb-6">39.000 đồng mỗi người mỗi tháng, từ 5 thành viên.</p>
+          <!-- Gói Team -->
+        <p class="mb-6">
+  <span class="price-display font-display text-2xl font-bold text-ink dark:text-ink-invert" data-monthly="39000" data-yearly="374000">39.000 đ</span>
+  <span class="duration-display text-sm text-muted dark:text-muted-invert">/ người / tháng</span>
+        </p>
+<p class="text-sm text-muted dark:text-muted-invert mb-6">Từ 5 thành viên.</p>
           <ul class="flex flex-col gap-2 text-sm text-muted dark:text-muted-invert mb-8">
             <li>Mọi quyền lợi gói Pro</li>
             <li>Lịch học nhóm dùng chung</li>
@@ -248,6 +346,12 @@
     <p class="text-xs text-muted dark:text-muted-invert">Bản quyền StudyFlow, năm 2026.</p>
   </footer>
 
-  <script src="j.js"></script>
+  <!-- Thêm nút Lên đầu trang (cho bài khởi động) -->
+  <button id="to-top-btn" class="hidden fixed bottom-8 right-8 z-50 w-12 h-12 items-center justify-center rounded-full bg-accent-500 text-white shadow-lg transition-transform hover:-translate-y-1" aria-label="Lên đầu trang">
+    ↑
+  </button>
+
+  <!-- Nạp script dưới dạng module -->
+  <script type="module" src="./js/main.js"></script>
 </body>
 </html>

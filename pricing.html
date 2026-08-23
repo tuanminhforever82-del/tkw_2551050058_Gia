@@ -5,9 +5,19 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Bảng giá - StudyFlow</title>
   <link rel="stylesheet" href="dist/output.css">
+  <!-- SCRIPT CHỐNG NHÁY TRẮNG DARK MODE -->
+  <script>
+    (function () {
+      const saved = localStorage.getItem("theme");
+      const dark = saved ? saved === "dark" 
+                         : window.matchMedia("(prefers-color-scheme: dark)").matches;
+      document.documentElement.classList.toggle("dark", dark);
+    })();
+  </script>
 </head>
 <body class="bg-surface dark:bg-surface-dark text-ink dark:text-ink-invert transition-colors duration-300">
-
+<!-- THÊM DÒNG NÀY (Người canh gác IntersectionObserver) -->
+  <div id="nav-sentinel"></div>
   <a href="#main" class="sr-only focus:not-sr-only">Bỏ qua đến nội dung chính</a>
 
   <!-- BẮT ĐẦU HEADER (Giống hệt index.html) -->
@@ -33,8 +43,8 @@
         <li><a href="index.html#tinh-nang-title" class="text-sm font-medium text-muted dark:text-muted-invert hover:text-ink dark:hover:text-ink-invert">Tính năng</a></li>
         <li><a href="pricing.html" class="text-sm font-medium text-accent-500 font-bold">Bảng giá</a></li>
         <li><a href="contact.html" class="text-sm font-medium text-muted dark:text-muted-invert hover:text-ink dark:hover:text-ink-invert">Liên hệ</a></li>
-        <li><a href="#" class="btn btn-outline">Đăng nhập</a></li>
-        <li><a href="#" class="btn btn-primary">Dùng thử miễn phí</a></li>
+        <li><a href="login.html" class="btn btn-outline">Đăng nhập</a></li>
+        <li><a href="signup.html" class="btn btn-primary">Dùng thử miễn phí</a></li>
       </ul>
     </nav>
   </header>
@@ -44,13 +54,32 @@
     <!-- Tiêu đề trang & Các thẻ giá (Kế thừa thẻ card) -->
     <section class="section text-center">
       <span class="badge mb-6 inline-block">Nâng cấp việc học</span>
+       <!-- BẮT ĐẦU CÔNG TẮC GIÁ -->
+    <div class="flex items-center justify-center gap-4 mb-12">
+    <span class="text-sm font-medium text-ink dark:text-ink-invert">Hàng tháng</span>
+  
+    <!-- Nút switch dùng role="switch" và aria-checked. Dùng group để điều khiển cục tròn bên trong -->
+    <button id="pricing-switch" role="switch" aria-checked="false" class="group relative inline-flex h-6 w-11 shrink-0 cursor-pointer items-center rounded-full border-2 border-transparent bg-line transition-colors duration-200 ease-in-out aria-checked:bg-brand-600 dark:aria-checked:bg-accent-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-accent-500 focus-visible:ring-offset-2">
+    <span class="sr-only">Thanh toán theo năm</span>
+    <!-- Cục tròn trượt qua lại: Dùng group-aria-checked để bắt trạng thái từ button cha -->
+    <span aria-hidden="true" class="pointer-events-none inline-block h-4 w-4 transform rounded-full bg-surface dark:bg-surface-dark shadow ring-0 transition duration-200 ease-in-out translate-x-0 group-aria-checked:translate-x-5"></span>
+  </button>
+  
+  <span class="text-sm font-medium text-ink dark:text-ink-invert">Hàng năm <span class="text-xs text-accent-500 font-bold ml-1">(Giảm 20%)</span></span>
+</div>
+<!-- KẾT THÚC CÔNG TẮC GIÁ -->
       <h1 class="font-display text-4xl font-semibold text-ink dark:text-ink-invert mb-4">Đầu tư nhỏ, kết quả lớn</h1>
       <p class="text-muted dark:text-muted-invert max-w-xl mx-auto mb-14">Chọn gói phù hợp với mục tiêu học tập của bạn. Có thể hủy bất kỳ lúc nào.</p>
       
       <ul class="grid gap-6 lg:grid-cols-3 text-left">
         <li class="card p-8!">
           <h3 class="font-display text-base font-semibold text-ink dark:text-ink-invert mb-1">Free</h3>
-          <p class="text-sm text-muted dark:text-muted-invert mb-6">0đ / tháng</p>
+         <!-- Gói Free -->
+<p class="mb-6">
+  <span class="font-display text-2xl font-bold text-ink dark:text-ink-invert">0 đ</span>
+  <span class="text-sm text-muted dark:text-muted-invert">/ tháng</span>
+</p>
+<p class="text-sm text-muted dark:text-muted-invert mb-6">Đủ dùng cho một môn học.</p>
           <ul class="flex flex-col gap-2 text-sm text-muted dark:text-muted-invert mb-8">
             <li>✓ 1 lịch học đang hoạt động</li>
             <li>✓ Flashcard không giới hạn</li>
@@ -61,7 +90,12 @@
         <li class="rounded-card border-2 border-brand-600 dark:border-accent-500 bg-surface dark:bg-surface-dark p-8 shadow-2xl dark:shadow-none relative">
           <span class="absolute top-0 right-8 -translate-y-1/2 bg-accent-500 text-white text-[10px] font-bold px-2 py-1 rounded-pill uppercase">Phổ biến nhất</span>
           <h3 class="font-display text-base font-semibold text-ink dark:text-ink-invert mb-1">Pro</h3>
-          <p class="text-sm text-muted dark:text-muted-invert mb-6">59.000đ / tháng</p>
+          <!-- Gói Pro -->
+<p class="mb-6">
+  <span class="price-display font-display text-2xl font-bold text-ink dark:text-ink-invert" data-monthly="59000" data-yearly="566000">59.000 đ</span>
+  <span class="duration-display text-sm text-muted dark:text-muted-invert">/ tháng</span>
+</p>
+<p class="text-sm text-muted dark:text-muted-invert mb-6">Cho cả học kỳ nhiều môn.</p>
           <ul class="flex flex-col gap-2 text-sm text-muted dark:text-muted-invert mb-8">
             <li>✓ Lịch học không giới hạn</li>
             <li>✓ Spaced repetition nâng cao</li>
@@ -71,7 +105,12 @@
         </li>
         <li class="card p-8!">
           <h3 class="font-display text-base font-semibold text-ink dark:text-ink-invert mb-1">Team</h3>
-          <p class="text-sm text-muted dark:text-muted-invert mb-6">39.000đ / người / tháng</p>
+            <!-- Gói Team -->
+<p class="mb-6">
+  <span class="price-display font-display text-2xl font-bold text-ink dark:text-ink-invert" data-monthly="39000" data-yearly="374000">39.000 đ</span>
+  <span class="duration-display text-sm text-muted dark:text-muted-invert">/ người / tháng</span>
+</p>
+<p class="text-sm text-muted dark:text-muted-invert mb-6">Từ 5 thành viên.</p>
           <ul class="flex flex-col gap-2 text-sm text-muted dark:text-muted-invert mb-8">
             <li>✓ Mọi quyền lợi gói Pro</li>
             <li>✓ Lịch học nhóm dùng chung</li>
@@ -132,7 +171,7 @@
       <ul class="flex flex-col gap-3">
         <li class="rounded-card border border-line dark:border-line-invert bg-surface dark:bg-surface-dark">
           <details class="p-5">
-            <summary class="cursor-pointer text-sm font-semibold text-ink dark:text-ink-invert">StudyFlow hỗ trợ phương thức thanh toán nào?</summary>
+            <summary class=" text-sm font-semibold text-ink dark:text-ink-invert cursor-pointer"><span class="text-soft transition group-open: rotate-90"></span>StudyFlow hỗ trợ phương thức thanh toán nào?</summary>
             <p class="text-sm text-muted dark:text-muted-invert mt-3">Chúng tôi hỗ trợ thanh toán qua thẻ ngân hàng nội địa, thẻ tín dụng (Visa/Mastercard), và các ví điện tử phổ biến tại Việt Nam như Momo, ZaloPay.</p>
           </details>
         </li>
@@ -161,6 +200,12 @@
     </form>
     <p class="text-xs text-muted dark:text-muted-invert">Bản quyền StudyFlow, năm 2026.</p>
   </footer>
-  <script src="j.js"></script>
+  <!-- Thêm nút Lên đầu trang (Bài khởi động) -->
+  <button id="to-top-btn" class="hidden fixed bottom-8 right-8 z-50 w-12 h-12 items-center justify-center rounded-full bg-accent-500 text-white shadow-lg transition-transform hover:-translate-y-1" aria-label="Lên đầu trang">
+    ↑
+  </button>
+
+  <!-- Nạp script dạng module chuẩn ES6 -->
+  <script type="module" src="./js/main.js"></script>
 </body>
 </html>
