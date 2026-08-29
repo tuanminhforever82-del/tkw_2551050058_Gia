@@ -69,4 +69,8 @@
     .field-input {
         @apply bg-transparent rounded-pill border border-line dark:border-line-invert px-4 py-2 text-sm text-ink dark:text-ink-invert focus:border-accent-500 focus:outline-none;
     }
+    /* Bắt trạng thái lỗi cho các ô input */
+.field-input[aria-invalid="true"] {
+  @apply border-red-500 focus:ring-red-500/20 focus:border-red-500 text-red-600;
+}
 }
